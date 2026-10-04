@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Django Template Learning Lab{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'lab/css/site.css' %}?v=3">
+  <link rel="stylesheet" href="{% static 'lab/css/lesson-content.css' %}?v=3">
+  <link rel="stylesheet" href="{% static 'lab/css/simulation.css' %}?v=3">
+  {% block extra_head %}{% endblock %}
+  <style>@media (min-width:861px){.menu-button{display:flex}.vl-header{padding-left:24px}}</style>
+</head>
+<body>
+  <div class="lab-page">
+    <header class="vl-header">
+      <button class="menu-button" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="lab-logo" href="{% url 'experiments' %}" aria-label="KJ Somaiya School of Engineering - Learning Django"><span class="logo-mark">&lt;/&gt;</span><span><b>KJ Somaiya School of Engineering</b><small>Learning Django</small></span></a>
+      <nav class="top-links" aria-label="Primary navigation"><a href="{% url 'experiments' %}">HOME</a><a href="{% url 'experiments' %}">EXPERIMENTS</a><a href="{% url 'feedback' %}">CONTACT</a></nav>
+    </header>
+    <main class="page-main">{% block content %}{% endblock %}</main>
+    <footer class="vl-footer"><div><strong>Community Links</strong><a href="#">Django Documentation</a><a href="#">Python Documentation</a><a href="#">FAQ</a></div><div><strong>Contact Us</strong><span>For learning support: template-lab@example.com</span></div></footer>
+  </div>
+  <script>document.querySelector('.menu-button').addEventListener('click', function(){const side=document.querySelector('.sidebar');const shown=side.classList.toggle('shown');this.setAttribute('aria-expanded', shown);});</script>
+  {% block extra_script %}{% endblock %}
+</body>
+</html>

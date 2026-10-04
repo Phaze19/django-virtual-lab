@@ -1,0 +1,119 @@
+{% verbatim %}
+<div class="sim-container" id="simulation-loops">
+  <!-- Header Bar -->
+  <div class="sim-header-bar">
+    <div class="sim-title-group">
+      <span class="sim-badge">Virtual Lab</span>
+      <h3 class="sim-title">Template Loops Interactive Simulation</h3>
+    </div>
+    <div class="sim-actions">
+      <span class="sim-render-feedback" id="loop-render-feedback">Rendered</span>
+      <button class="sim-btn sim-btn-primary" id="loop-run-btn" type="button">Render All</button>
+      <button class="sim-btn sim-btn-secondary" id="loop-step-btn" type="button">Step Next Item</button>
+      <button class="sim-btn sim-btn-secondary" id="loop-clear-data-btn" type="button">Clear Items</button>
+      <button class="sim-btn sim-btn-secondary" id="loop-reset-data-btn" type="button">Reset Data</button>
+    </div>
+  </div>
+
+  <!-- Instructions Card -->
+  <div class="sim-instructions-card">
+    <div class="sim-instructions-title">Simulation Instructions</div>
+    <ol class="sim-instructions-list">
+      <li><strong>Task 1:</strong> Replace <code>____</code> in the table row with <code>{{ forloop.counter }}</code> to number the rows starting from 1.</li>
+      <li><strong>Task 2:</strong> Click <strong>Clear Items</strong> to test the <code>{% empty %}</code> fallback block when no data is available.</li>
+      <li><strong>Task 3:</strong> Use <code>{% if forloop.first %} (First){% endif %}</code> to add a condition for the first item.</li>
+      <li>Click <strong>Step Next Item</strong> to watch the loop step through each row one at a time and inspect loop variables.</li>
+    </ol>
+  </div>
+
+  <!-- Challenge Status Bar -->
+  <div class="sim-challenge-card">
+    <div class="sim-task-pills">
+      <span class="sim-task-label">Active Task:</span>
+      <button class="sim-task-pill active" data-loop-task="1" type="button">Task 1: forloop.counter</button>
+      <button class="sim-task-pill" data-loop-task="2" type="button">Task 2: empty Branch</button>
+      <button class="sim-task-pill" data-loop-task="3" type="button">Task 3: First / Last Tags</button>
+    </div>
+    <div class="sim-task-desc">
+      <span id="loop-task-desc">Task 1: Replace ____ with {{ forloop.counter }} to number the rows starting from 1.</span>
+      <span class="sim-challenge-status sim-status-pending" id="loop-challenge-status">Task 1 (In Progress): Replace ____ with {{ forloop.counter }} in the table row.</span>
+    </div>
+  </div>
+
+  <!-- Workbench Grid -->
+  <div class="sim-workbench">
+    <!-- Code Editor Column -->
+    <div class="sim-col-editor">
+      <div class="sim-panel-header">
+        <span>experiments_table.html (Django Template Loop)</span>
+        <span style="font-size:11px;color:#64748b;">Editor</span>
+      </div>
+
+      <div class="sim-code-area">
+        <textarea id="loop-template-editor" class="sim-editor" spellcheck="false" placeholder="Write loop code..."><table style="width:100%;border-collapse:collapse;font-size:14px;">
+  <thead>
+    <tr style="background:#f1f5f9;border-bottom:2px solid #cbd5e1;text-align:left;">
+      <th style="padding:8px 10px;">#</th>
+      <th style="padding:8px 10px;">Experiment</th>
+      <th style="padding:8px 10px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for exp in experiments %}
+    <tr style="border-bottom:1px solid #e2e8f0;">
+      <td style="padding:8px 10px;font-weight:bold;">____</td>
+      <td style="padding:8px 10px;color:#337ab7;">{{ exp.title }}</td>
+      <td style="padding:8px 10px;">{{ exp.status }}</td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="3" style="padding:16px;text-align:center;color:#b45309;background:#fffbeb;">
+        No experiments found! (Rendered by {% empty %})
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table></textarea>
+      </div>
+
+      <!-- Context Preview -->
+      <div class="sim-panel-header" style="border-top:1px solid #dce4eb;">
+        <span>views.py (List of 4 items passed in context)</span>
+      </div>
+      <div class="sim-context-box">
+        context = {<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'experiments'</span>: [<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{<span style="color:#15803d;">'id'</span>: 1, <span style="color:#15803d;">'title'</span>: <span style="color:#15803d;">'Template Variables'</span>, <span style="color:#15803d;">'status'</span>: <span style="color:#15803d;">'Completed'</span>},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{<span style="color:#15803d;">'id'</span>: 2, <span style="color:#15803d;">'title'</span>: <span style="color:#15803d;">'Template Inheritance'</span>, <span style="color:#15803d;">'status'</span>: <span style="color:#15803d;">'In Progress'</span>},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{<span style="color:#15803d;">'id'</span>: 3, <span style="color:#15803d;">'title'</span>: <span style="color:#15803d;">'Template Loops'</span>, <span style="color:#15803d;">'status'</span>: <span style="color:#15803d;">'Active Lab'</span>},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{<span style="color:#15803d;">'id'</span>: 4, <span style="color:#15803d;">'title'</span>: <span style="color:#15803d;">'Template Filters'</span>, <span style="color:#15803d;">'status'</span>: <span style="color:#15803d;">'Upcoming'</span>}<br>
+        &nbsp;&nbsp;]<br>
+        }
+      </div>
+    </div>
+
+    <!-- Live Preview Column -->
+    <div class="sim-col-preview">
+      <div class="sim-preview-topbar">
+        <span>Live Output Preview</span>
+        <span class="sim-preview-url">/experiments/template-loops/</span>
+      </div>
+
+      <div class="sim-preview-body" id="loop-rendered-output">
+        <!-- Loop rendered output -->
+      </div>
+
+      <!-- Loop Stepper Inspector -->
+      <div class="sim-inspector">
+        <div class="sim-inspector-title">
+          <span>Loop Iteration Debugger</span>
+          <span style="font-weight:400;color:#64748b;font-size:11px;">Iteration State</span>
+        </div>
+        <div id="loop-stepper-info">
+          <!-- Stepper state info -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endverbatim %}

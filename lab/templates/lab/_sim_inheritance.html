@@ -1,0 +1,107 @@
+{% verbatim %}
+<div class="sim-container" id="simulation-inheritance">
+  <!-- Header Bar -->
+  <div class="sim-header-bar">
+    <div class="sim-title-group">
+      <span class="sim-badge">Virtual Lab</span>
+      <h3 class="sim-title">Template Inheritance Interactive Simulation</h3>
+    </div>
+    <div class="sim-actions">
+      <span class="sim-render-feedback" id="inh-render-feedback">Rendered</span>
+      <button class="sim-btn sim-btn-primary" id="inh-run-btn" type="button">Render Template</button>
+      <button class="sim-btn sim-btn-secondary" id="inh-reset-btn" type="button">Reset Code</button>
+    </div>
+  </div>
+
+  <!-- Instructions Card -->
+  <div class="sim-instructions-card">
+    <div class="sim-instructions-title">Simulation Instructions</div>
+    <ol class="sim-instructions-list">
+      <li><strong>Task 1:</strong> In <code>child.html</code>, replace <code>____</code> inside <code>{% block content %}</code> with your custom page HTML (e.g. <code>&lt;h3&gt;Inheritance Experiment&lt;/h3&gt;&lt;p&gt;Custom child page content.&lt;/p&gt;</code>).</li>
+      <li><strong>Task 2:</strong> Add <code>{% block nav %}&lt;a href="#"&gt;Custom Nav&lt;/a&gt;{% endblock %}</code> in <code>child.html</code> to customize navigation.</li>
+      <li><strong>Task 3:</strong> Remove or comment out <code>{% extends 'base.html' %}</code> to see how Django behaves without inheritance.</li>
+      <li>Click <strong>Render Template</strong> to compile and inspect the composite layout.</li>
+    </ol>
+  </div>
+
+  <!-- Challenge Status Bar -->
+  <div class="sim-challenge-card">
+    <div class="sim-task-pills">
+      <span class="sim-task-label">Active Task:</span>
+      <button class="sim-task-pill active" data-inh-task="1" type="button">Task 1: Content Block</button>
+      <button class="sim-task-pill" data-inh-task="2" type="button">Task 2: Override Nav Block</button>
+      <button class="sim-task-pill" data-inh-task="3" type="button">Task 3: Missing Extends Test</button>
+    </div>
+    <div class="sim-task-desc">
+      <span id="inh-task-desc">Task 1: In child.html, replace ____ inside {% block content %} with custom page content.</span>
+      <span class="sim-challenge-status sim-status-pending" id="inh-challenge-status">Task 1 (In Progress): Replace ____ in {% block content %} with your content.</span>
+    </div>
+  </div>
+
+  <!-- Workbench Grid -->
+  <div class="sim-workbench">
+    <!-- Code Editor Column -->
+    <div class="sim-col-editor">
+      <div class="sim-panel-header">
+        <div class="sim-file-tabs">
+          <button class="sim-tab-btn active" id="inh-tab-child" type="button">child.html (Child Template)</button>
+          <button class="sim-tab-btn" id="inh-tab-base" type="button">base.html (Parent Layout)</button>
+        </div>
+        <span style="font-size:11px;color:#64748b;">Multi-File Editor</span>
+      </div>
+
+      <div class="sim-code-area">
+        <!-- Child Template Editor -->
+        <textarea id="inh-child-editor" class="sim-editor" spellcheck="false" placeholder="Write child template code...">{% extends 'base.html' %}
+
+{% block content %}
+____
+{% endblock %}</textarea>
+
+        <!-- Base Template Editor (Initially hidden) -->
+        <textarea id="inh-base-editor" class="sim-editor" style="display:none;" spellcheck="false" placeholder="Write base layout code..."><!-- base.html (Parent Layout) -->
+<div class="virtual-lab-frame" style="border:1px solid #dce4eb;border-radius:4px;overflow:hidden;background:#fff;">
+  <header style="background:#337ab7;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
+    <strong>KJ Somaiya School of Engineering</strong>
+    <span style="font-size:12px;opacity:0.9;">Virtual Lab</span>
+  </header>
+  <nav style="background:#eef4fa;padding:8px 18px;font-size:13px;border-bottom:1px solid #dce4eb;">
+    {% block nav %}<a href="#" style="color:#337ab7;text-decoration:none;margin-right:12px;">Home</a><a href="#" style="color:#337ab7;text-decoration:none;">Experiments</a>{% endblock %}
+  </nav>
+  <main style="padding:18px;min-height:120px;">
+    {% block content %}
+      <p style="color:#64748b;font-style:italic;">[Parent Default Content] Replace ____ in child.html to inject page content here.</p>
+    {% endblock %}
+  </main>
+  <footer style="background:#222;color:#eee;padding:10px 18px;font-size:12px;text-align:center;">
+    {% block footer %}&copy; 2026 KJ Somaiya School of Engineering - Learning Django{% endblock %}
+  </footer>
+</div></textarea>
+      </div>
+    </div>
+
+    <!-- Live Preview Column -->
+    <div class="sim-col-preview">
+      <div class="sim-preview-topbar">
+        <span>Live Output Preview</span>
+        <span class="sim-preview-url">/experiments/template-inheritance/</span>
+      </div>
+
+      <div class="sim-preview-body" id="inh-rendered-output">
+        <!-- Combined layout output -->
+      </div>
+
+      <!-- Blueprint Inspector -->
+      <div class="sim-inspector">
+        <div class="sim-inspector-title">
+          <span>Template Architecture Blueprint</span>
+          <span style="font-weight:400;color:#64748b;font-size:11px;">Parent &rarr; Child Block Mapping</span>
+        </div>
+        <div id="inh-blueprint">
+          <!-- Blueprint blocks mapping -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endverbatim %}

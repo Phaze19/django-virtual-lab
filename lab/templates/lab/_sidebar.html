@@ -1,0 +1,11 @@
+<aside class="sidebar">
+  <div class="area-title">Web Development</div>
+  <nav class="nav-menu" aria-label="Lab sections">
+    <a class="{% if active == 'introduction' %}current-item{% endif %}" href="{% url 'introduction' %}">Introduction</a>
+    <a class="{% if active == 'objective' %}current-item{% endif %}" href="{% url 'objective' %}">Objective</a>
+    <a class="{% if active == 'experiments' %}current-item{% endif %}" href="{% url 'experiments' %}">List of experiments</a>
+    <a class="{% if active == 'target_audience' %}current-item{% endif %}" href="{% url 'target_audience' %}">Target Audience</a>
+    <a class="{% if active == 'course_alignment' %}current-item{% endif %}" href="{% url 'course_alignment' %}">Course Alignment</a>
+    <a class="{% if active == 'feedback' %}current-item{% endif %}" href="{% url 'feedback' %}">Feedback</a>
+  </nav>
+</aside>

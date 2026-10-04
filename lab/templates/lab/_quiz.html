@@ -1,0 +1,10 @@
+<form class="quiz-form" novalidate>
+  {% for item in questions %}
+  <fieldset class="mcq" data-correct="{{ item.correct }}">
+    <legend><span class="question-number">{{ forloop.counter }}</span>{{ item.question }}</legend>
+    <div class="options">{% for option in item.options %}<label><input type="radio" name="{{ quiz_id }}-{{ forloop.parentloop.counter }}" value="{{ forloop.counter0 }}"> <span>{{ option }}</span></label>{% endfor %}</div>
+    <p class="explanation" hidden><strong>Explanation:</strong> {{ item.explanation }}</p>
+    <button class="check-answer" type="button">Check answer</button><p class="quiz-result" aria-live="polite"></p>
+  </fieldset>
+  {% endfor %}
+</form>

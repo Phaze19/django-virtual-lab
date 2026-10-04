@@ -1,0 +1,98 @@
+{% verbatim %}
+<div class="sim-container" id="simulation-filters">
+  <!-- Header Bar -->
+  <div class="sim-header-bar">
+    <div class="sim-title-group">
+      <span class="sim-badge">Virtual Lab</span>
+      <h3 class="sim-title">Template Filters Interactive Simulation</h3>
+    </div>
+    <div class="sim-actions">
+      <span class="sim-render-feedback" id="flt-render-feedback">Rendered</span>
+      <button class="sim-btn sim-btn-primary" id="flt-run-btn" type="button">Render Template</button>
+      <button class="sim-btn sim-btn-secondary" id="flt-reset-btn" type="button">Reset Filters</button>
+    </div>
+  </div>
+
+  <!-- Instructions Card -->
+  <div class="sim-instructions-card">
+    <div class="sim-instructions-title">Simulation Instructions</div>
+    <ol class="sim-instructions-list">
+      <li><strong>Task 1:</strong> Apply the title case or uppercase filter to <code>{{ student_name }}</code> (e.g. <code>{{ student_name|title }}</code> or <code>{{ student_name|upper }}</code>).</li>
+      <li><strong>Task 2:</strong> Truncate the long bio by adding <code>|truncatechars:35</code> or <code>|truncatewords:6</code> (e.g. <code>{{ bio|truncatechars:35 }}</code>).</li>
+      <li><strong>Task 3:</strong> Handle the empty phone number with a fallback using <code>|default:'Not provided'</code> (e.g. <code>{{ missing_phone|default:'Not provided' }}</code>).</li>
+      <li>Click <strong>Render Template</strong> to apply the filter transformations and inspect the output.</li>
+    </ol>
+  </div>
+
+  <!-- Challenge Status Bar -->
+  <div class="sim-challenge-card">
+    <div class="sim-task-pills">
+      <span class="sim-task-label">Active Task:</span>
+      <button class="sim-task-pill active" data-flt-task="1" type="button">Task 1: Text Filters</button>
+      <button class="sim-task-pill" data-flt-task="2" type="button">Task 2: Truncate Text</button>
+      <button class="sim-task-pill" data-flt-task="3" type="button">Task 3: Default Fallback</button>
+    </div>
+    <div class="sim-task-desc">
+      <span id="flt-task-desc">Task 1: Format student_name in Title Case or Uppercase using |title or |upper.</span>
+      <span class="sim-challenge-status sim-status-pending" id="flt-challenge-status">Task 1 (In Progress): Apply |title or |upper to {{ student_name }} (e.g. {{ student_name|title }}).</span>
+    </div>
+  </div>
+
+  <!-- Workbench Grid -->
+  <div class="sim-workbench">
+    <!-- Code Editor Column -->
+    <div class="sim-col-editor">
+      <div class="sim-panel-header">
+        <span>learner_card.html (Django Template with Filters)</span>
+        <span style="font-size:11px;color:#64748b;">Editor</span>
+      </div>
+
+      <div class="sim-code-area">
+        <textarea id="flt-template-editor" class="sim-editor" spellcheck="false" placeholder="Write template filter code..."><div class="sim-rendered-card">
+  <h3>Learner Profile</h3>
+  <p><strong>Student Name:</strong> {{ student_name }}</p>
+  <p><strong>Bio:</strong> {{ bio }}</p>
+  <p><strong>Contact Phone:</strong> {{ missing_phone }}</p>
+</div></textarea>
+      </div>
+
+      <!-- Context Values -->
+      <div class="sim-panel-header" style="border-top:1px solid #dce4eb;">
+        <span>views.py (Context Variables)</span>
+      </div>
+      <div class="sim-context-box">
+        context = {<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'student_name'</span>: <span style="color:#15803d;">'anurag vedak'</span>,<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'joined_date'</span>: <span style="color:#15803d;">'2026-10-04'</span>,<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'bio'</span>: <span style="color:#15803d;">'Django templates separate presentation from business logic using variables, loops, filters, and inheritance.'</span>,<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'missing_phone'</span>: <span style="color:#15803d;">''</span>,<br>
+        &nbsp;&nbsp;<span style="color:#15803d;">'course_fee'</span>: 15000<br>
+        }
+      </div>
+    </div>
+
+    <!-- Live Preview Column -->
+    <div class="sim-col-preview">
+      <div class="sim-preview-topbar">
+        <span>Live Output Preview</span>
+        <span class="sim-preview-url">/experiments/template-filters/</span>
+      </div>
+
+      <div class="sim-preview-body" id="flt-rendered-output">
+        <!-- Rendered output -->
+      </div>
+
+      <!-- Filter Transformation Pipeline Inspector -->
+      <div class="sim-inspector">
+        <div class="sim-inspector-title">
+          <span>Filter Transformation Pipeline</span>
+          <span style="font-weight:400;color:#64748b;font-size:11px;">Input &rarr; Filter &rarr; Output</span>
+        </div>
+        <div id="flt-pipeline">
+          <!-- Pipeline flow visualization nodes -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endverbatim %}

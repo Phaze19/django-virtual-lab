@@ -1,0 +1,111 @@
+{% extends 'lab/base.html' %}
+{% load static %}
+{% block title %}{{ section|title }} | {{ experiment.title }}{% endblock %}
+{% block content %}
+<div class="lab-layout lesson-layout">
+  <aside class="sidebar lesson-sidebar">
+    <div class="area-title">Django Template Learning Lab</div>
+    <div class="small-label">EXPERIMENT {{ experiment.number }}</div>
+    <nav class="nav-menu" aria-label="Experiment sections">
+      <a class="{% if section == 'aim' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'aim' %}">Aim</a>
+      <a class="{% if section == 'theory' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'theory' %}">Theory</a>
+      <a class="{% if section == 'pretest' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'pretest' %}">Pretest</a>
+      <a class="{% if section == 'procedure' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'procedure' %}">Procedure</a>
+      <a class="{% if section == 'simulation' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'simulation' %}">Simulation</a>
+      <a class="{% if section == 'posttest' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'posttest' %}">Posttest</a>
+      <a class="{% if section == 'feedback' %}current-item{% endif %}" href="{% url 'lesson_section' experiment.slug 'feedback' %}">Feedback</a>
+    </nav>
+  </aside>
+  <section class="content-panel lesson-panel">
+    <div class="breadcrumbs"><a href="{% url 'experiments' %}">Django Template Learning Lab</a><span>/</span><a href="{% url 'experiments' %}">Experiments</a><span>/</span>{{ experiment.title }}</div>
+    <h1>{{ experiment.title }}</h1>
+    <p class="aim-text">{{ experiment.summary }}</p>
+
+    {% if section == 'aim' %}
+    <section class="lesson-section section-page"><h2>Aim</h2><p>{{ lesson.aim }}</p><p>The aim gives you one clear outcome to keep in mind before you begin the theory and practical work.</p></section>
+    {% elif section == 'theory' %}
+    <section class="lesson-section section-page"><h2>Theory</h2><p class="theory-intro">{{ lesson.overview }}</p>{% for item in lesson.theory %}<article class="theory-block"><h3>{{ item.title }}</h3><p>{{ item.text }}</p><pre><code>{{ item.code }}</code></pre></article>{% endfor %}<div class="remember-list" aria-label="Key points to remember"><h3>Remember</h3><ul>{% for tip in lesson.tips %}<li>{{ tip }}</li>{% endfor %}</ul></div></section>
+    {% elif section == 'pretest' %}
+    <section class="lesson-section quiz-section section-page"><h2>Pretest</h2><p>Try these questions before reading the theory. Your answers are checked only in this browser and are not saved yet.</p>{% include 'lab/_quiz.html' with questions=lesson.pretest quiz_id='pretest' %}</section>
+    {% elif section == 'procedure' %}
+    <section class="lesson-section section-page"><h2>Procedure</h2><p>Follow these steps in order. Each step is designed to connect the theory with a small piece of Django code.</p><ol class="procedure">{% for step in lesson.procedure %}<li>{{ step }}</li>{% endfor %}</ol></section>
+    {% elif section == 'simulation' %}
+    <section class="lesson-section section-page simulation-page">
+      <h2>Interactive Simulation Workbench</h2>
+      <p>Use the live simulation workbench below to experiment with the code taught in this experiment's theory. You can edit code, step through execution, inspect variable resolutions, and complete guided challenges.</p>
+      {% if experiment.slug == 'template-variables' %}
+        {% include 'lab/_sim_variables.html' %}
+      {% elif experiment.slug == 'template-inheritance' %}
+        {% include 'lab/_sim_inheritance.html' %}
+      {% elif experiment.slug == 'template-loops' %}
+        {% include 'lab/_sim_loops.html' %}
+      {% elif experiment.slug == 'template-filters' %}
+        {% include 'lab/_sim_filters.html' %}
+      {% endif %}
+    </section>
+    {% elif section == 'posttest' %}
+    <section class="lesson-section quiz-section section-page"><h2>Posttest</h2><p>Now check whether you can apply the concept without looking back at the code examples.</p>{% include 'lab/_quiz.html' with questions=lesson.posttest quiz_id='posttest' %}</section>
+    {% elif section == 'feedback' %}
+    <section class="lesson-section section-page feedback-page"><h2>Feedback</h2><p>Your feedback helps improve this experiment. We save each comment to the database so the learning lab can keep improving.</p>
+      <form id="feedback-form" class="feedback-form" method="post" action="{% url 'experiment_feedback' experiment.slug %}">
+        {% csrf_token %}
+        <label for="feedback-message">What was clear, confusing, or useful in this experiment?</label>
+        <textarea id="feedback-message" name="message" rows="6" placeholder="Write your feedback here...">{{ feedback_text|default:'' }}</textarea>
+        <button class="check-answer" type="submit">Send feedback</button>
+        {% if feedback_error %}
+          <p class="quiz-result is-warning" aria-live="polite">{{ feedback_error }}</p>
+        {% elif feedback_success %}
+          <p class="quiz-result is-correct" aria-live="polite">{{ feedback_success }}</p>
+        {% else %}
+          <p class="quiz-result" aria-live="polite"></p>
+        {% endif %}
+      </form>
+    </section>
+    {% endif %}
+    {% include 'lab/_pagination.html' %}
+  </section>
+</div>
+{% endblock %}
+{% block extra_script %}
+<script src="{% static 'lab/js/simulation.js' %}"></script>
+<script>
+document.querySelectorAll('.quiz-form').forEach((form) => {
+  form.addEventListener('submit', (event) => event.preventDefault());
+});
+document.querySelectorAll('.mcq .check-answer').forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    const question = button.closest('.mcq');
+    if (!question) return;
+    const result = question.querySelector('.quiz-result');
+    const selected = question.querySelector('input:checked');
+    if (!selected) {
+      result.textContent = 'Please choose an answer first.';
+      result.className = 'quiz-result is-warning';
+      return;
+    }
+    const correctAnswer = Number(selected.value) === Number(question.dataset.correct);
+    question.classList.toggle('is-correct', correctAnswer);
+    question.classList.toggle('is-incorrect', !correctAnswer);
+    const exp = question.querySelector('.explanation');
+    if (exp) exp.hidden = false;
+    result.textContent = correctAnswer
+      ? 'Correct! Read the explanation, then continue.'
+      : 'Not quite. Read the explanation and try again.';
+    result.className = `quiz-result ${correctAnswer ? 'is-correct' : 'is-incorrect'}`;
+  });
+});
+const feedbackForm = document.querySelector('#feedback-form');
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', (event) => {
+    const textarea = feedbackForm.querySelector('textarea');
+    const result = feedbackForm.querySelector('.quiz-result');
+    if (!textarea.value.trim()) {
+      event.preventDefault();
+      result.textContent = 'Please write a short comment before sending.';
+      result.className = 'quiz-result is-warning';
+    }
+  });
+}
+</script>
+{% endblock %}

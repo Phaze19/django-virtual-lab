@@ -1,0 +1,100 @@
+{% verbatim %}
+<div class="sim-container" id="simulation-variables">
+  <!-- Header Bar -->
+  <div class="sim-header-bar">
+    <div class="sim-title-group">
+      <span class="sim-badge">Virtual Lab</span>
+      <h3 class="sim-title">Template Variables Interactive Simulation</h3>
+    </div>
+    <div class="sim-actions">
+      <span class="sim-render-feedback" id="var-render-feedback">Rendered</span>
+      <button class="sim-btn sim-btn-primary" id="var-run-btn" type="button">Render Template</button>
+      <button class="sim-btn sim-btn-secondary" id="var-reset-btn" type="button">Reset Code</button>
+    </div>
+  </div>
+
+  <!-- Instructions Card -->
+  <div class="sim-instructions-card">
+    <div class="sim-instructions-title">Simulation Instructions</div>
+    <ol class="sim-instructions-list">
+      <li><strong>Task 1:</strong> Replace <code>____</code> on the Course line with the template variable <code>{{ course }}</code>.</li>
+      <li><strong>Task 2:</strong> Replace <code>____</code> on the Department line with <code>{{ student.department }}</code> using dot notation.</li>
+      <li><strong>Task 3:</strong> Replace <code>____</code> on the Semester line with <code>{{ semester }}</code> to observe Django's handling of missing context variables.</li>
+      <li>Click <strong>Render Template</strong> to evaluate and view the resolved output in the preview panel.</li>
+    </ol>
+  </div>
+
+  <!-- Challenge Status Bar -->
+  <div class="sim-challenge-card">
+    <div class="sim-task-pills">
+      <span class="sim-task-label">Active Task:</span>
+      <button class="sim-task-pill active" data-var-task="1" type="button">Task 1: Basic Variable</button>
+      <button class="sim-task-pill" data-var-task="2" type="button">Task 2: Dot Notation</button>
+      <button class="sim-task-pill" data-var-task="3" type="button">Task 3: Missing Variable</button>
+    </div>
+    <div class="sim-task-desc">
+      <span id="var-task-desc">Task 1: Replace ____ on the Course line with {{ course }}.</span>
+      <span class="sim-challenge-status sim-status-pending" id="var-challenge-status">Task 1 (In Progress): Replace ____ with {{ course }} and click Render.</span>
+    </div>
+  </div>
+
+  <!-- Workbench Grid -->
+  <div class="sim-workbench">
+    <!-- Code Editor Column -->
+    <div class="sim-col-editor">
+      <div class="sim-panel-header">
+        <span>student_detail.html (Django Template)</span>
+        <span style="font-size:11px;color:#64748b;">Editor</span>
+      </div>
+
+      <div class="sim-code-area">
+        <textarea id="var-template-editor" class="sim-editor" spellcheck="false" placeholder="Write Django template code here..."><div class="sim-rendered-card">
+  <h3>Student Profile</h3>
+  <p><strong>Name:</strong> {{ student_name }}</p>
+  <p><strong>Course:</strong> ____</p>
+  <p><strong>Department:</strong> ____</p>
+  <p><strong>Semester:</strong> ____</p>
+</div></textarea>
+      </div>
+
+      <!-- Python View Context Preview -->
+      <div class="sim-panel-header" style="border-top:1px solid #dce4eb;">
+        <span>views.py (Context Passed to Template)</span>
+      </div>
+      <div class="sim-context-box">
+        <span style="color:#b91c1c;">def</span> <span style="color:#0369a1;">student_profile</span>(request):<br>
+        &nbsp;&nbsp;context = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#15803d;">'student_name'</span>: <span style="color:#15803d;">'Anurag'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#15803d;">'course'</span>: <span style="color:#15803d;">'Web Development (Django)'</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#15803d;">'student'</span>: {<span style="color:#15803d;">'roll_no'</span>: <span style="color:#15803d;">'2026BTECH01'</span>, <span style="color:#15803d;">'department'</span>: <span style="color:#15803d;">'Computer Engineering'</span>},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#15803d;">'status'</span>: <span style="color:#15803d;">'Active'</span><br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;<span style="color:#7c3aed;">return</span> render(request, <span style="color:#15803d;">'student_detail.html'</span>, context)
+      </div>
+    </div>
+
+    <!-- Live Preview Column -->
+    <div class="sim-col-preview">
+      <div class="sim-preview-topbar">
+        <span>Live Output Preview</span>
+        <span class="sim-preview-url">/experiments/template-variables/</span>
+      </div>
+
+      <div class="sim-preview-body" id="var-rendered-output">
+        <!-- Rendered template output appears here -->
+      </div>
+
+      <!-- Execution Inspector -->
+      <div class="sim-inspector">
+        <div class="sim-inspector-title">
+          <span>Variable Resolution Inspector</span>
+          <span style="font-weight:400;color:#64748b;font-size:11px;">Django Context Resolution</span>
+        </div>
+        <div class="sim-inspector-grid" id="var-inspector-grid">
+          <!-- Variable inspection nodes appear here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endverbatim %}

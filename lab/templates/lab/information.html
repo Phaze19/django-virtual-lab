@@ -1,0 +1,12 @@
+{% extends 'lab/base.html' %}
+{% block title %}{{ title }} | Django Template Learning Lab{% endblock %}
+{% block content %}
+<div class="lab-layout">
+  {% include 'lab/_sidebar.html' %}
+  <section class="content-panel information-panel">
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+    {% include 'lab/_pagination.html' %}
+  </section>
+</div>
+{% endblock %}

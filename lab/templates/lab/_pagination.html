@@ -1,0 +1,47 @@
+{% if prev_page or next_page %}
+<nav class="page-pagination" aria-label="Page navigation" style="display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:2px solid #e8e8e8;width:100%;box-sizing:border-box;">
+  {% if prev_page %}
+    <a class="nav-page-btn prev-btn" href="{{ prev_page.url }}" style="display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border:2px solid #337ab7;border-radius:4px;background:#ffffff;color:#337ab7;text-decoration:none;font-family:'Raleway',Arial,sans-serif;font-weight:600;font-size:15px;box-shadow:0 2px 4px rgba(0,0,0,0.06);transition:all .2s ease;">
+      <span style="font-size:18px;line-height:1;">&larr;</span>
+      <span><strong>Previous:</strong> {{ prev_page.title }}</span>
+    </a>
+  {% else %}
+    <span style="display:inline-block;"></span>
+  {% endif %}
+
+  {% if next_page %}
+    <a class="nav-page-btn next-btn" href="{{ next_page.url }}" style="display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border:2px solid #337ab7;border-radius:4px;background:#337ab7;color:#ffffff;text-decoration:none;font-family:'Raleway',Arial,sans-serif;font-weight:600;font-size:15px;box-shadow:0 2px 6px rgba(51,122,183,0.25);margin-left:auto;transition:all .2s ease;">
+      <span><strong>Next:</strong> {{ next_page.title }}</span>
+      <span style="font-size:18px;line-height:1;">&rarr;</span>
+    </a>
+  {% endif %}
+</nav>
+
+<style>
+.nav-page-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  text-decoration: none !important;
+}
+.nav-page-btn.prev-btn:hover {
+  background: #f0f7ff !important;
+  color: #23527c !important;
+}
+.nav-page-btn.next-btn:hover {
+  background: #23527c !important;
+  border-color: #23527c !important;
+  color: #ffffff !important;
+}
+@media (max-width: 650px) {
+  .page-pagination {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .nav-page-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-left: 0 !important;
+  }
+}
+</style>
+{% endif %}
