@@ -89,13 +89,18 @@ FSDL-Virtual-Lab-Miniproject/
 │   │   ├── css/
 │   │   │   ├── site.css        # Academic design system & layout styles
 │   │   │   └── simulation.css  # Dedicated workbench & editor theme
+│   │   ├── img/
+│   │   │   └── somaiya_logo.png# Somaiya Vidyavihar University brand asset
 │   │   └── js/
 │   │       └── simulation.js   # Client-side template parser & validator
 │   ├── templates/lab/
 │   │   ├── base.html           # Institutional shell & navigation
-│   │   ├── home.html           # Lab overview & experiment directory
+│   │   ├── experiments.html    # Lab overview & experiment directory
+│   │   ├── information.html    # Course alignment & pedagogy documentation
 │   │   ├── lesson.html         # Unified pedagogy template (Theory, Tests, etc.)
 │   │   ├── _pagination.html    # Previous / Next navigation component
+│   │   ├── _quiz.html          # Interactive diagnostic quiz renderer
+│   │   ├── _sidebar.html       # Persistent navigation drawer
 │   │   ├── _sim_variables.html # Workbench for Experiment 1
 │   │   ├── _sim_inheritance.html# Workbench for Experiment 2
 │   │   ├── _sim_loops.html     # Workbench for Experiment 3
@@ -107,14 +112,17 @@ FSDL-Virtual-Lab-Miniproject/
 │   ├── urls.py                 # URL routes for experiments & pedagogy tabs
 │   └── views.py                # View controllers & experiment metadata store
 ├── .editorconfig               # Cross-editor formatting specifications
+├── .env.example                # Environment variables template
 ├── .gitattributes              # Line-ending and binary file mappings
 ├── .gitignore                  # Git exclusion rules (venv, sqlite, cache)
+├── build_files.sh              # Vercel build script (pip, migrations, collectstatic)
 ├── CONTRIBUTING.md              # Open source contribution guidelines
 ├── LICENSE                     # MIT Open Source License
 ├── manage.py                   # Django CLI management utility
 ├── README.md                   # Main documentation & repository guide
-├── requirements.txt            # Python dependencies
-└── SECURITY.md                 # Security vulnerability disclosure policy
+├── requirements.txt            # Python dependencies (Django, WhiteNoise, etc.)
+├── SECURITY.md                 # Security vulnerability disclosure policy
+└── vercel.json                 # Vercel deployment routing & build config
 ```
 
 ---
@@ -183,16 +191,43 @@ python manage.py test
 
 Expected output:
 ```text
-Found 6 test(s).
+Found 9 test(s).
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-......
+.........
 ----------------------------------------------------------------------
-Ran 6 tests in 0.020s
+Ran 9 tests in 0.020s
 
 OK
 Destroying test database for alias 'default'...
 ```
+
+---
+
+## 🌐 Deployment (Vercel)
+
+This repository is pre-configured for automated serverless deployment to [Vercel](https://vercel.com/) with static asset compression via WhiteNoise.
+
+### 1. Push Repository to GitHub
+Ensure all recent commits are pushed to your remote repository on branch `main`:
+```bash
+git push origin main
+```
+
+### 2. Import Project on Vercel
+1. Navigate to your [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New... > Project**.
+2. Select your `django-virtual-lab` repository and click **Import**.
+3. Keep the default **Framework Preset** as *Other* (the repository's [`vercel.json`](vercel.json) and [`build_files.sh`](build_files.sh) handle everything automatically).
+
+### 3. Set Environment Variables
+In the project settings, add the following under **Environment Variables**:
+| Variable | Value | Description |
+|---|---|---|
+| `DJANGO_DEBUG` | `False` | Disables debug mode in production |
+| `SECRET_KEY` | *(random 50+ character string)* | Cryptographic security key |
+| `ALLOWED_HOSTS` | `.vercel.app` | Allowed host headers |
+
+4. Click **Deploy**. Vercel will install dependencies, run migrations, collect static assets, and deploy the live site to an HTTPS URL.
 
 ---
 
@@ -207,8 +242,12 @@ Destroying test database for alias 'default'...
 
 ## 👥 Authors & Acknowledgments
 
-- **Lead Developer**: Anurag Vedak ([@Phaze19](https://github.com/Phaze19))
+- **Project Team**:
+  - **Anurag Vedak** ([@Phaze19](https://github.com/Phaze19))
+  - **Sahil Mundhe**
+  - **Mohit Nagrecha**
 - **Institution**: **KJ Somaiya School of Engineering**, Somaiya Vidyavihar University, Mumbai
+- **Department**: Department of Information Technology & Computer Engineering
 - **Course**: Full Stack Development Laboratory (FSDL) - Miniproject
 
 Special thanks to the faculty and mentors at KJ Somaiya School of Engineering for their guidance in developing virtual laboratory learning tools.
