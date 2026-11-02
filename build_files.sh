@@ -2,7 +2,13 @@
 set -e
 
 echo "==> Installing project dependencies..."
-python3 -m pip install -r requirements.txt
+export PIP_BREAK_SYSTEM_PACKAGES=1
+
+if command -v uv &> /dev/null; then
+    uv pip install --system -r requirements.txt
+else
+    python3 -m pip install --break-system-packages -r requirements.txt
+fi
 
 echo "==> Applying database migrations..."
 python3 manage.py migrate --no-input
