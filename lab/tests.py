@@ -1,4 +1,5 @@
 from django.test import Client, TestCase
+from django.urls import reverse
 
 from .models import Feedback
 
@@ -64,5 +65,31 @@ class AdminRegistrationTests(TestCase):
         response = client.get("/admin/login/")
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Django administration")
+
+
+class BrandingAndCreditsTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_college_logo_rendered_in_header(self):
+        response = self.client.get(reverse("experiments"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "somaiya_logo.png")
+        self.assertContains(response, "KJ Somaiya School of Engineering")
+
+    def test_project_credits_rendered(self):
+        response = self.client.get(reverse("experiments"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Anurag Vedak")
+        self.assertContains(response, "Sahil Mundhe")
+        self.assertContains(response, "Mohit Nagrecha")
+
+    def test_introduction_page_contains_credits(self):
+        response = self.client.get("/introduction/")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Anurag Vedak")
+        self.assertContains(response, "Sahil Mundhe")
+        self.assertContains(response, "Mohit Nagrecha")
+
 
 

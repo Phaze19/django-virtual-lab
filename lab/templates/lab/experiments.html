@@ -10,6 +10,17 @@
       <li><a href="{% url 'lesson' experiment.slug %}">{{ experiment.title }}</a><span class="rating" aria-label="Not rated">☆ ☆ ☆ ☆ ☆</span></li>
       {% endfor %}
     </ol>
+    <div class="project-credits-card">
+      <div class="credits-badge">FSDL Miniproject</div>
+      <div class="credits-title">Project Credits</div>
+      <p class="credits-label">Project made by:</p>
+      <div class="credits-members">
+        <span class="member-chip">Anurag Vedak</span>
+        <span class="member-chip">Sahil Mundhe</span>
+        <span class="member-chip">Mohit Nagrecha</span>
+      </div>
+      <div class="credits-meta">KJ Somaiya School of Engineering • Department of Information Technology &amp; Computer Engineering</div>
+    </div>
     {% include 'lab/_pagination.html' %}
   </section>
 </div>

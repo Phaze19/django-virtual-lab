@@ -99,11 +99,16 @@ LESSON_CONTENT = {
 }
 
 INFORMATION = {
-    "introduction": ("Introduction", "Django Template Learning Lab introduces the fundamental tools used to create dynamic HTML pages in Django."),
+    "introduction": (
+        "Introduction",
+        "Django Template Learning Lab introduces the fundamental tools used to create dynamic HTML pages in Django. "
+        "This virtual lab was developed as a Full Stack Development Laboratory (FSDL) miniproject by "
+        "Anurag Vedak, Sahil Mundhe, and Mohit Nagrecha under the Department of Information Technology & Computer Engineering at KJ Somaiya School of Engineering.",
+    ),
     "objective": ("Objective", "To help learners understand template inheritance, variables, loops, and filters through short guided experiments."),
     "target_audience": ("Target Audience", "Undergraduate students and beginners who have completed the basics of Python and Django views."),
-    "course_alignment": ("Course Alignment", "Web Technologies, Python Programming, Full Stack Development, and Django Framework courses."),
-    "feedback": ("Feedback", "Your feedback helps us improve this learning lab. The feedback form will be added in the next phase."),
+    "course_alignment": ("Course Alignment", "Web Technologies, Python Programming, Full Stack Development (FSDL), and Django Framework courses at KJ Somaiya School of Engineering."),
+    "feedback": ("Feedback", "Your feedback helps us improve this learning lab. We value student suggestions on experiment clarity and simulation ease of use."),
 }
 
 

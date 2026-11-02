@@ -1,3 +1,41 @@
 :root{--blue:#337ab7;--soft-blue:#3e6389;--orange:#ff6600;--line:#e8e8e8;--footer:#111}*{box-sizing:border-box}html{min-height:100%;background:#fff}body{margin:0;color:#333;font-family:'Open Sans',Arial,sans-serif;font-size:16px}.lab-page{min-height:100vh;display:flex;flex-direction:column}.vl-header{min-height:101px;border-bottom:8px solid var(--orange);display:flex;align-items:center;padding:0 24px;font-family:Raleway,Arial,sans-serif}.menu-button{width:56px;height:64px;border:1px solid #ddd;background:white;border-radius:3px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;margin-right:31px;cursor:pointer}.menu-button span{width:23px;height:2px;background:#777}.lab-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--blue);font-size:22px;line-height:1.15}.lab-logo b{font-weight:600}.lab-logo small{display:block;font-size:13px;letter-spacing:.2px;margin-top:4px}.logo-mark{display:grid;place-items:center;width:47px;height:47px;border:3px solid #77bb41;border-radius:6px;color:#77bb41;font-size:16px;font-family:monospace}.top-links{margin-left:auto;display:flex;gap:68px;padding-right:17px}.top-links a{color:#3e6389;text-decoration:none;font-size:15px}.page-main{flex:1}.lab-layout{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:615px}.sidebar{border-right:1px solid var(--line);padding-top:25px;font-family:Raleway,Arial,sans-serif}.area-title{color:var(--soft-blue);font-size:22px;line-height:1.3;padding:0 24px 20px;white-space:normal;word-break:normal;overflow-wrap:break-word}.nav-menu{display:flex;flex-direction:column;padding:0 31px;gap:18px}.nav-menu a{color:#4b607b;text-decoration:none;font-size:18px;font-weight:600}.nav-menu a.current-item{color:var(--orange)}.content-panel{font-family:Raleway,Arial,sans-serif;padding:33px 68px}.content-panel h1{color:#2c99ce;font-size:32px;font-weight:400;margin:0 0 35px}.experiments-panel{padding-top:63px}.experiments-panel h1{text-align:center}.experiment-list{max-width:850px;margin:0 auto;padding-left:30px;font-size:19px}.experiment-list li{padding:0 0 24px 0}.experiment-list a{color:#337ab7;text-decoration:none}.experiment-list a:hover{text-decoration:underline}.rating{color:#e8ce67;font-size:27px;letter-spacing:2px;margin-left:19px;vertical-align:-2px;white-space:nowrap}.information-panel{max-width:900px}.information-panel p,.lesson-panel p{font-size:18px;line-height:1.75}.vl-footer{background:var(--footer);color:#e5e5e5;font-size:13px;padding:22px 9%;display:flex;gap:100px;font-family:Raleway,Arial,sans-serif}.vl-footer div{display:flex;flex-direction:column;gap:7px}.vl-footer strong{font-size:15px;border-bottom:2px solid #3ec1d5;padding-bottom:5px}.vl-footer a{color:#ddd;text-decoration:none}.breadcrumbs{color:#337ab7;font-size:16px;margin-bottom:22px}.breadcrumbs span{color:#999;margin:0 8px}.lesson-layout .sidebar{padding-top:18px}.lesson-sidebar .area-title{font-size:17px;line-height:1.35;padding:0 24px 18px;white-space:normal;word-break:normal;overflow-wrap:break-word}.small-label{color:#777;font-size:12px;padding:0 31px 15px;letter-spacing:.8px}.lesson-sidebar .nav-menu{gap:14px}.lesson-sidebar .nav-menu a{font-size:16px}.lesson-panel{padding-top:25px}.lesson-panel h1{margin-bottom:10px;text-align:left}.aim-text{color:#555;margin-top:0}.lesson-panel h2{font-size:22px;color:#2c99ce;font-weight:400;margin-top:28px}.lesson-panel hr{border:0;border-top:1px solid var(--line);margin:28px 0}.procedure{font-size:17px;line-height:1.9;padding-left:25px}.simulation-note{border:1px solid #ddd;padding:16px 18px;margin-top:32px;color:#555;max-width:690px}.simulation-note strong{color:#2c99ce;margin-right:14px}@media(max-width:860px){.vl-header{min-height:84px;padding:0 15px}.menu-button{margin-right:15px;width:46px;height:52px}.lab-logo{font-size:20px}.lab-logo small{font-size:11px}.top-links{gap:17px;padding:0}.lab-layout{grid-template-columns:1fr}.sidebar{display:none}.sidebar.shown{display:block;border-right:0;border-bottom:1px solid var(--line)}.content-panel{padding:35px 25px}.experiments-panel{padding-top:42px}.content-panel h1{font-size:27px}.experiment-list{font-size:17px}.experiment-list li{padding-bottom:20px}.rating{display:block;margin:6px 0 0;font-size:23px}.vl-footer{padding:22px 25px;gap:35px;flex-direction:column}.top-links a:nth-child(2){display:none}}@media(min-width:861px){.menu-button{display:none}.vl-header{padding-left:112px}.lab-logo{margin-left:0}}
 .page-pagination{display:flex;justify-content:space-between;align-items:stretch;gap:16px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line);font-family:'Open Sans',Arial,sans-serif}.pagination-btn{display:flex;flex-direction:column;padding:9px 16px;border:1px solid #dce4eb;border-radius:3px;text-decoration:none;background:#ffffff;color:var(--blue);min-width:130px;transition:all .15s ease}.pagination-btn:hover{background:#f7f9fb;border-color:var(--blue);text-decoration:none}.pagination-btn.next-btn{margin-left:auto;text-align:right}.pagination-sub{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#64748b;font-weight:600;margin-bottom:2px}.pagination-title{font-family:Raleway,Arial,sans-serif;font-size:14px;font-weight:600;color:#337ab7}.pagination-spacer{flex:0}
 
+/* Somaiya College Logo & Brand Styling */
+.college-logo{height:50px;width:auto;max-width:210px;object-fit:contain;display:block;transition:opacity .2s ease}
+.college-logo:hover{opacity:.92}
+.logo-divider{width:1px;height:42px;background:#d8dfe6;margin:0 6px}
+.logo-text{display:flex;flex-direction:column;justify-content:center}
+.logo-text b{font-weight:600;color:var(--soft-blue);font-size:20px;line-height:1.2;letter-spacing:-.2px}
+.logo-text small{display:block;font-size:12.5px;letter-spacing:.3px;margin-top:2px;color:#64748b}
+
+/* Footer Credits */
+.footer-credits{display:flex;flex-direction:column;gap:6px}
+.credits-sub{font-size:13px;color:#94a3b8;font-weight:600}
+.credits-names{display:flex;flex-direction:column;gap:4px;color:#f1f5f9;font-size:13px;font-weight:500}
+
+/* Project Credits Dashboard Card */
+.project-credits-card{margin:36px auto 0;max-width:850px;background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid var(--orange);border-radius:8px;padding:22px 26px;box-shadow:0 1px 3px rgba(0,0,0,.04);font-family:'Open Sans',Arial,sans-serif}
+.credits-badge{display:inline-block;background:#e0f2fe;color:#0369a1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.credits-title{font-family:Raleway,Arial,sans-serif;font-size:19px;font-weight:700;color:var(--soft-blue);margin-bottom:6px}
+.credits-label{margin:0 0 10px 0;font-size:14px;color:#475569;font-weight:600}
+.credits-members{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.member-chip{display:inline-flex;align-items:center;background:#fff;border:1px solid #cbd5e1;border-radius:20px;padding:6px 16px;font-size:14px;font-weight:600;color:var(--blue);box-shadow:0 1px 2px rgba(0,0,0,.04);transition:all .15s ease}
+.member-chip:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 2px 4px rgba(0,0,0,.08)}
+.credits-meta{font-size:12.5px;color:#64748b;line-height:1.5}
+
+/* Mobile responsive adjustments */
+@media(max-width:860px){
+  .college-logo{height:36px;max-width:130px}
+  .logo-divider{height:30px;margin:0 3px}
+  .logo-text b{font-size:15px}
+  .logo-text small{font-size:11px}
+  .project-credits-card{padding:18px 18px;margin-top:28px}
+  .member-chip{font-size:13px;padding:5px 12px}
+}
+@media(max-width:560px){
+  .logo-text b{font-size:13px}
+  .logo-text small{display:none}
+  .college-logo{height:30px;max-width:110px}
+}
+
